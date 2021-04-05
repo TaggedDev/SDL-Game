@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include "Field.h"
 
 using namespace std;
 //Screen dimension constants
@@ -14,6 +15,10 @@ int main(int argc, char* args[])
 	SDL_Event e;
 	bool done = false, quit = false;
 	while (!quit) {
+
+		Field field;
+		// Draw the 
+		field.Render();
 
 		if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 			std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
