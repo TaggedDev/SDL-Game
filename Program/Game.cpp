@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include "Field.h"
+#include "Player.h"
 
 using namespace std;
 //Screen dimension constants
@@ -35,7 +36,8 @@ int main(int argc, char* args[])
 
 		Field field;
 		field.Render(ren);
-		
+		Player player;
+
 
 		while (!done) {
 			while (SDL_PollEvent(&e))
@@ -49,15 +51,24 @@ int main(int argc, char* args[])
 					quit = true;
 				}
 				// Если пользователь нажал клавишу на клавиатуре
-				if (e.type == SDL_KEYDOWN)
+				/*if (e.type == SDL_KEYDOWN)
 				{
 					printf("Oh my");
 					quit = true;
 				}
+				*/
 				// Если пользователь щёлкнул мышью
 				if (e.type == SDL_MOUSEBUTTONDOWN)
 				{
 					quit = true;
+				}
+				if (e.type == SDL_KEYDOWN) {
+					
+					switch (e.key.keysym.sym) {
+					case SDLK_d:
+						player.move_right(ren, 30, 0, 500);
+					}
+					
 				}
 			}
 		}
