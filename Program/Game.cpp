@@ -7,30 +7,35 @@
 
 using namespace std;
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 600;
 
 int main(int argc, char* args[])
 {
+	
 	SDL_Event e;
 	bool done = false, quit = false;
 	while (!quit) {
-
-		Field field;
-		// Draw the 
-		field.Render();
-
+		
 		if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 			std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 			return 1;
 		}
 
-		SDL_Window* win = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
-		SDL_Renderer* ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+		SDL_Window* win;
+		SDL_Renderer* ren;
+		SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &win, &ren);
+		SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
+		//
+
 		if (ren == nullptr) {
 			std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
 			return 1;
 		}
+
+		Field field;
+		field.Render(ren);
+		
 
 		while (!done) {
 			while (SDL_PollEvent(&e))
