@@ -11,22 +11,62 @@ const int SCREEN_HEIGHT = 480;
 
 int main(int argc, char* args[])
 {
+	SDL_Event e;
+	bool done = false, quit = false;
+	while (!quit) {
+
+		if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+			std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
+			return 1;
+		}
+
+		SDL_Window* win = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+		SDL_Renderer* ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+		if (ren == nullptr) {
+			std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
+			return 1;
+		}
+
+		while (!done) {
+			while (SDL_PollEvent(&e))
+			{
+				// Если пользователь попытался закрыть окно
+				if (e.type == SDL_QUIT)
+				{
+					SDL_DestroyRenderer(ren);
+					SDL_DestroyWindow(win);
+					SDL_Quit();
+					quit = true;
+				}
+				// Если пользователь нажал клавишу на клавиатуре
+				if (e.type == SDL_KEYDOWN)
+				{
+					printf("Oh my");
+					quit = true;
+				}
+				// Если пользователь щёлкнул мышью
+				if (e.type == SDL_MOUSEBUTTONDOWN)
+				{
+
+					quit = true;
+				}
+			}
+		}
+	}
+	
+	//SDL_Surface* screen = SDL_SetVideoMode(550, 420, 16, SDL_HWSURFACE | SDL_DOUBLEBUF);
+	/*if (SDL_Init(SDL_INIT_EVENTS) < 0) {
+		printf("Unable to run: %s", SDL_GetError());
+		return 1;
+	}*/
+
 	SDL_Window* window;
-	SDL_Renderer* ren;
-	SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &ren);
-	SDL_SetRenderDrawColor(ren, 255, 255, 0, 255);
+	SDL_Renderer* render;
+	SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &render);
+
 	
 
-	SDL_RenderPresent(ren);
-
-	// Delay
-	SDL_Delay(3000);
-
-	//Destroy window
-	SDL_DestroyWindow(window);
-
-	//Quit SDL subsystems
-	SDL_Quit();
-
+	
+	
 	return 0;
 }
