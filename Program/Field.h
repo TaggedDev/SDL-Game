@@ -7,6 +7,7 @@ class Field
 {
 public:
 	void Render(SDL_Renderer* render);
+
 private:
 	vector<Tank> enemies;
 };

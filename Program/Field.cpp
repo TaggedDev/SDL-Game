@@ -36,6 +36,7 @@ void it_Rectangle(SDL_Renderer* render, int x, int y, int length, int height) {
 
 void Field::Render(SDL_Renderer* render)
 {
-	it_Rectangle(render, 10, 10, 50, 50);
+	it_Rectangle(render, 0, 0, 1080, 500);
+
 	SDL_RenderPresent(render);
 }

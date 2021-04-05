@@ -57,7 +57,6 @@ int main(int argc, char* args[])
 				// Если пользователь щёлкнул мышью
 				if (e.type == SDL_MOUSEBUTTONDOWN)
 				{
-
 					quit = true;
 				}
 			}
