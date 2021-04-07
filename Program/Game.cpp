@@ -64,20 +64,28 @@ int main(int argc, char* args[])
 
 					switch (e.key.keysym.sym) {
 					case SDLK_d:
-						player.move_right(ren, x, y);
-						x += 5;
+						if (x + 50 < 1080) {
+							player.move_right(ren, x, y);
+							x += 5;
+						}
 						continue;
 					case SDLK_s:
-						player.move_down(ren, x, y);
-						y += 5;
+						if (y + 25 < 500) {
+							player.move_down(ren, x, y);
+							y += 5;
+						}
 						continue;
 					case SDLK_w:
-						player.move_up(ren, x, y);
-						y -= 5;
+						if (y > 5) {
+							player.move_up(ren, x, y);
+							y -= 5;
+						}
 						continue;
 					case SDLK_a:
-						player.move_left(ren, x, y);
-						x -= 5;
+						if (x > 5) {
+							player.move_left(ren, x, y);
+							x -= 5;
+						}
 						continue;
 					case SDLK_r:
 						tank.draw(ren);
