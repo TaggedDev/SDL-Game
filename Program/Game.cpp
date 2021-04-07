@@ -41,7 +41,7 @@ int main(int argc, char* args[])
 		Field field;
 		field.Render(ren);
 		Player player;
-
+		Tank tank;
 
 		while (!done) {
 			while (SDL_PollEvent(&e))
@@ -54,13 +54,6 @@ int main(int argc, char* args[])
 					SDL_Quit();
 					quit = true;
 				}
-				// Если пользователь нажал клавишу на клавиатуре
-				/*if (e.type == SDL_KEYDOWN)
-				{
-					printf("Oh my");
-					quit = true;
-				}
-				*/
 				// Если пользователь щёлкнул мышью
 				if (e.type == SDL_MOUSEBUTTONDOWN)
 				{
@@ -85,6 +78,9 @@ int main(int argc, char* args[])
 					case SDLK_a:
 						player.move_left(ren, x, y);
 						x -= 5;
+						continue;
+					case SDLK_r:
+						tank.draw(ren);
 						continue;
 					}
 					
