@@ -13,6 +13,10 @@ const int SCREEN_HEIGHT = 600;
 
 int main(int argc, char* args[])
 {
+	//Tank position
+	int x = 300;
+	int y = 300;
+	//
 	
 	SDL_Event e;
 	bool done = false, quit = false;
@@ -62,11 +66,26 @@ int main(int argc, char* args[])
 				{
 					quit = true;
 				}
+				// Tank movement
 				if (e.type == SDL_KEYDOWN) {
-					
+
 					switch (e.key.keysym.sym) {
 					case SDLK_d:
-						player.move_right(ren, 30, 0, 500);
+						player.move_right(ren, x, y);
+						x += 5;
+						continue;
+					case SDLK_s:
+						player.move_down(ren, x, y);
+						y += 5;
+						continue;
+					case SDLK_w:
+						player.move_up(ren, x, y);
+						y -= 5;
+						continue;
+					case SDLK_a:
+						player.move_left(ren, x, y);
+						x -= 5;
+						continue;
 					}
 					
 				}
