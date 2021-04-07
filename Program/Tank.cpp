@@ -5,22 +5,17 @@
 #include <iostream>
 using namespace std;
 
-//bool load() {
-//	SDL_Surface* flower = NULL;
-//	SDL_Surface* scr = NULL;
-//	flower = SDL_LoadBMP("flower.png");
-//	if (flower == NULL) {
-//		cout << "Can't load " << SDL_GetError() << endl;
-//		return false;
-//	}
-//	flower = SDL_ConvertSurface(flower, scr->format, NULL);
-//	if (flower == NULL) {
-//		cout << "Can't convert" << SDL_GetError() << endl;
-//		return false;
-//	}
-//
-//	return true;
-//}
+void applySurface(int x, int y, SDL_Texture* tex, SDL_Renderer* ren) {
+	SDL_Rect pos;
+	int w, h;
+	w = 32;
+	h = 32;
+	pos.x = x;
+	pos.y = y;
+	SDL_QueryTexture(tex, NULL, NULL, &pos.w, &pos.h);
+	//SDL_QueryTexture(tex, NULL, NULL, &w, &h);
+	SDL_RenderCopy(ren, tex, NULL, &pos);
+}
 
 void Tank::draw(SDL_Renderer* ren)
 {
@@ -38,6 +33,6 @@ void Tank::draw(SDL_Renderer* ren)
 		return;
 	}
 
-	SDL_RenderCopy(ren, tex, NULL, NULL);
+	applySurface(10, 10, tex, ren);
 	SDL_RenderPresent(ren);
 }
