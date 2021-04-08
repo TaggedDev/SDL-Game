@@ -72,7 +72,7 @@ int main(int argc, char* args[])
 							player.move_left(ren);
 						continue;
 					case SDLK_r:
-						tank.draw(ren);
+						player.draw(ren, 1);
 						continue;
 					}
 					
