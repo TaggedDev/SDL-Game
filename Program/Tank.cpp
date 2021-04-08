@@ -7,19 +7,16 @@ using namespace std;
 
 void applySurface(int x, int y, SDL_Texture* tex, SDL_Renderer* ren) {
 	SDL_Rect pos;
-	int w, h;
-	w = 32;
-	h = 32;
-	pos.x = x;
-	pos.y = y;
-	SDL_QueryTexture(tex, NULL, NULL, &pos.w, &pos.h);
-	//SDL_QueryTexture(tex, NULL, NULL, &w, &h);
+	pos.x = 10;
+	pos.y = 10;
+	pos.w = 60;
+	pos.h = 60;
 	SDL_RenderCopy(ren, tex, NULL, &pos);
 }
 
 void Tank::draw(SDL_Renderer* ren)
 {
-	SDL_Surface* surface = SDL_LoadBMP("D:\\Code\\C++\\sdl_game\\SDL-Game\\Program\\x64\\Debug\\flower.bmp");
+	SDL_Surface* surface = SDL_LoadBMP("bluetank.bmp");
 	if (surface == nullptr) {
 		std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
 		return;
