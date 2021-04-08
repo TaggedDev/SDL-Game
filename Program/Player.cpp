@@ -69,27 +69,29 @@ void Player::draw(SDL_Renderer* ren, int factor)
 void Player::move_right(SDL_Renderer* ren)
 {
     int save = x;
-    if (x + 50 < 1081) {
-        while (x < save + 100) {
-            draw(ren, 1);
-            full_rect_model(ren, x, y, 50, 25);
-            SDL_RenderPresent(ren);
-            full_rect_bckg(ren, x, y, 50, 25);
-            x++;
-        }
+    if (!(x + 50 < 1081))
+        return;
+    while (x < save + 100) {
+        draw(ren, 1);
+        full_rect_model(ren, x, y, 50, 25);
+        SDL_RenderPresent(ren);
+        full_rect_bckg(ren, x, y, 50, 25);
+        x++;
     }
 }
+
 void Player::move_down(SDL_Renderer* ren)
 {
     int save1 = y;
-    if (y + 25 < 501) {
-        while (y < save1 + 100) {
-            draw(ren, 4);
-            full_rect_model(ren, x, y, 50, 25);
-            SDL_RenderPresent(ren);
-            full_rect_bckg(ren, x, y, 50, 25);
-            y++;
-        }
+    if (!(y + 25 < 501))
+        return;
+
+    while (y < save1 + 100) {
+        draw(ren, 4);
+        full_rect_model(ren, x, y, 50, 25);
+        SDL_RenderPresent(ren);
+        full_rect_bckg(ren, x, y, 50, 25);
+        y++;
     }
 }
 void Player::move_left(SDL_Renderer* ren) {
