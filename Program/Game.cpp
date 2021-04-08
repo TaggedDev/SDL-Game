@@ -13,10 +13,6 @@ const int SCREEN_HEIGHT = 600;
 
 int main(int argc, char* args[])
 {
-	//Tank position
-	int x = 300;
-	int y = 300;
-	//
 	
 	SDL_Event e;
 	bool done = false, quit = false;
@@ -64,28 +60,16 @@ int main(int argc, char* args[])
 
 					switch (e.key.keysym.sym) {
 					case SDLK_d:
-						if (x + 50 < 1080) {
-							player.move_right(ren, x, y);
-							x += 5;
-						}
+						player.move_right(ren);
 						continue;
 					case SDLK_s:
-						if (y + 25 < 500) {
-							player.move_down(ren, x, y);
-							y += 5;
-						}
+							player.move_down(ren);
 						continue;
 					case SDLK_w:
-						if (y > 5) {
-							player.move_up(ren, x, y);
-							y -= 5;
-						}
+							player.move_up(ren);
 						continue;
 					case SDLK_a:
-						if (x > 5) {
-							player.move_left(ren, x, y);
-							x -= 5;
-						}
+							player.move_left(ren);
 						continue;
 					case SDLK_r:
 						tank.draw(ren);

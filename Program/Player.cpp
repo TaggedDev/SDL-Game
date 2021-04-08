@@ -1,7 +1,11 @@
 #include "Player.h"
 #include <SDL.h>
-int x = 200;
-int y = 200;
+void Player::setX(int value) {
+    x = value;
+}
+void Player::setY(int value) {
+    y = value;
+}
 void dr_lineX(SDL_Renderer* ren, int x, int y, int len) {
     for (int i = 0; i < len; i++) {
         SDL_RenderDrawPoint(ren, x + i, y);
@@ -20,42 +24,53 @@ void full_rect_bckg(SDL_Renderer* ren, int x, int y, int lenx, int leny) {
     }
 }
 
-void Player::move_right(SDL_Renderer* ren, int x, int y)
+void Player::move_right(SDL_Renderer* ren)
 {
     int save = x;
-    while (x < save + 5) {
-        full_rect_model(ren, x, y, 50, 25);
-        SDL_RenderPresent(ren);
-        full_rect_bckg(ren, x, y, 50, 25);
-        x++;
+    if (x + 50 < 1081) {
+        while (x < save + 5) {
+            full_rect_model(ren, x, y, 50, 25);
+            SDL_RenderPresent(ren);
+            full_rect_bckg(ren, x, y, 50, 25);
+            x++;
+        }
+        x += 5;
     }
-
 }
-void Player::move_down(SDL_Renderer* ren, int x, int y)
+void Player::move_down(SDL_Renderer* ren)
 {
     int save1 = y;
-    while (y < save1 + 5) {
-        full_rect_model(ren, x, y, 50, 25);
-        SDL_RenderPresent(ren);
-        full_rect_bckg(ren, x, y, 50, 25);
-        y++;
+    if (y + 25 < 501) {
+        while (y < save1 + 5) {
+            full_rect_model(ren, x, y, 50, 25);
+            SDL_RenderPresent(ren);
+            full_rect_bckg(ren, x, y, 50, 25);
+            y++;
+        }
+        y += 5;
     }
 }
-void Player::move_left(SDL_Renderer* ren, int x, int y) {
+void Player::move_left(SDL_Renderer* ren) {
     int save1 = x;
-    while (x > save1 - 5) {
-        full_rect_model(ren, x, y, 50, 25);
-        SDL_RenderPresent(ren);
-        full_rect_bckg(ren, x, y, 50, 25);
-        x--;
+    if (x > 0) {
+        while (x > save1 - 5) {
+            full_rect_model(ren, x, y, 50, 25);
+            SDL_RenderPresent(ren);
+            full_rect_bckg(ren, x, y, 50, 25);
+            x--;
+        }
+        x -= 5;
     }
 }
-void Player::move_up(SDL_Renderer* ren, int x, int y) {
+void Player::move_up(SDL_Renderer* ren) {
     int save1 = y;
-    while (y > save1 - 5) {
-        full_rect_model(ren, x, y, 50, 25);
-        SDL_RenderPresent(ren);
-        full_rect_bckg(ren, x, y, 50, 25);
-        y--;
+    if (y > 0) {
+        while (y > save1 - 5) {
+            full_rect_model(ren, x, y, 50, 25);
+            SDL_RenderPresent(ren);
+            full_rect_bckg(ren, x, y, 50, 25);
+            y--;
+        }
+        y -= 5;
     }
 }
