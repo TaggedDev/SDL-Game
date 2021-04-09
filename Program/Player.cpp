@@ -27,6 +27,11 @@ void full_rect_bckg(SDL_Renderer* ren, int x, int y, int lenx, int leny) {
         dr_lineX(ren, x, i, lenx);
     }
 }
+void model_render(SDL_Renderer* ren, int x, int y, int sizex, int sizey) {
+    full_rect_model(ren, x, y, sizex, sizey);
+    SDL_RenderPresent(ren);
+    full_rect_bckg(ren, x, y, sizex, sizey);
+}
 
 void applySurface(int x, int y, SDL_Texture* tex, SDL_Renderer* ren) {
     SDL_Rect pos;
@@ -69,51 +74,69 @@ void Player::draw(SDL_Renderer* ren, int factor)
 void Player::move_right(SDL_Renderer* ren)
 {
     int save = x;
-    if (!(x + 50 < 1081))
-        return;
-    while (x < save + 100) {
-        draw(ren, 1);
-        full_rect_model(ren, x, y, 50, 25);
-        SDL_RenderPresent(ren);
-        full_rect_bckg(ren, x, y, 50, 25);
-        x++;
+    if (x + 60 >= 1080)
+        while (x + 50 < 1080) {
+            draw(ren, 1);
+            model_render(ren, x, y, 50, 25);
+            x++;
+        }
+    else {
+        while (x < save + 10) {
+            draw(ren, 1);
+            model_render(ren, x, y, 50, 25);
+            x++;
+        }
     }
 }
 
 void Player::move_down(SDL_Renderer* ren)
 {
     int save1 = y;
-    if (!(y + 25 < 501))
-        return;
-
-    while (y < save1 + 100) {
-        draw(ren, 4);
-        full_rect_model(ren, x, y, 50, 25);
-        SDL_RenderPresent(ren);
-        full_rect_bckg(ren, x, y, 50, 25);
-        y++;
+    if (y + 35 >= 500) {
+        while (y + 25 < 500) {
+            draw(ren, 4);
+            model_render(ren, x, y, 50, 25);
+            y++;
+        }
+    }
+    else {
+        while (y < save1 + 10) {
+            draw(ren, 4);
+            model_render(ren, x, y, 50, 25);
+            y++;
+        }
     }
 }
 void Player::move_left(SDL_Renderer* ren) {
     int save1 = x;
-    if (x > 0) {
-        while (x > save1 - 100) {
+    if (x - 10 <= 0) {
+        while (x > 1) {
             draw(ren, 3);
-            full_rect_model(ren, x, y, 50, 25);
-            SDL_RenderPresent(ren);
-            full_rect_bckg(ren, x, y, 50, 25);
+            model_render(ren, x, y, 50, 25);
+            x--;
+        }
+    }
+    else {
+        while (x > save1 - 10) {
+            draw(ren, 3);
+            model_render(ren, x, y, 50, 25);
             x--;
         }
     }
 }
 void Player::move_up(SDL_Renderer* ren) {
     int save1 = y;
-    if (y > 0) {
-        while (y > save1 - 100) {
+    if (y - 10 <= 0) {
+        while (y > 1) {
             draw(ren, 2);
-            full_rect_model(ren, x, y, 50, 25);
-            SDL_RenderPresent(ren);
-            full_rect_bckg(ren, x, y, 50, 25);
+            model_render(ren, x, y, 50, 25);
+            y--;
+        }
+    }
+    else{
+        while (y > save1 - 10) {
+            draw(ren, 2);
+            model_render(ren, x, y, 50, 25);
             y--;
         }
     }
