@@ -1,5 +1,15 @@
 #include "Block.h"
 
+int Block::getX()
+{
+    return x1;
+}
+
+int Block::getY()
+{
+    return y1;
+}
+
 bool Block::ColliderEnterBlock(int x, int y)
 {
     if (x >= x1 && x <= x2)

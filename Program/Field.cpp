@@ -68,6 +68,12 @@ void drawfield(SDL_Renderer* ren, int x, int y)
 void Field::Render(SDL_Renderer* render)
 {
 	rectangle(render, 0, 0, 1080, 500);
-	drawfield(render, 10, 10);
+	Block blck1 = Block(1020, 440);
+	blocks.push_back(blck1);
+	
+	for (Block block : blocks) {
+		drawfield(render, block.getX(), block.getY());
+	}
+
 	SDL_RenderPresent(render);
 }
