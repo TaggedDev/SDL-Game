@@ -74,8 +74,8 @@ void Player::draw(SDL_Renderer* ren, int factor, int x, int y)
 void Player::move_right(SDL_Renderer* ren)
 {
     int save = x;
-    if (x + 60 >= 1080)
-        while (x + 50 < 1080) {
+    if (x + 70 >= 1080)
+        while (x + 60 < 1080) {
             draw(ren, 1, x, y);
             x++;
         }
@@ -90,8 +90,8 @@ void Player::move_right(SDL_Renderer* ren)
 void Player::move_down(SDL_Renderer* ren)
 {
     int save1 = y;
-    if (y + 35 >= 500) {
-        while (y + 25 < 500) {
+    if (y + 70 >= 500) {
+        while (y + 60 < 500) {
             draw(ren, 4, x, y);
             y++;
         }
