@@ -37,7 +37,6 @@ int main(int argc, char* args[])
 		Field field;
 		field.Render(ren);
 		Player player;
-		Tank tank;
 
 		while (!done) {
 			while (SDL_PollEvent(&e))

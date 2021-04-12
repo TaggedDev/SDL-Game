@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-void it_Line(SDL_Renderer* ren, int x1, int y1, int x2, int y2) {
+void line(SDL_Renderer* ren, int x1, int y1, int x2, int y2) {
 	int dx = x2 - x1;
 	int dy = y2 - y1;
 
@@ -27,15 +27,14 @@ void it_Line(SDL_Renderer* ren, int x1, int y1, int x2, int y2) {
 	}
 }
 
-void it_Rectangle(SDL_Renderer* render, int x, int y, int length, int height) {
-	it_Line(render, x, y, x + length, y);
-	it_Line(render, x, y + height, x + length, y + height);
-	it_Line(render, x, y, x, y + height);
-	it_Line(render, x + length, y, x + length, y + height);
+void rectangle(SDL_Renderer* render, int x, int y, int length, int height) {
+	line(render, x, y, x + length, y);
+	line(render, x, y + height, x + length, y + height);
+	line(render, x, y, x, y + height);
+	line(render, x + length, y, x + length, y + height);
 }
 
-
-void a1pplySurface(int x, int y, SDL_Texture* tex, SDL_Renderer* ren) {
+void applySurfaceField(int x, int y, SDL_Texture* tex, SDL_Renderer* ren) {
     SDL_Rect pos;
     pos.x = x;
     pos.y = y;
@@ -44,7 +43,7 @@ void a1pplySurface(int x, int y, SDL_Texture* tex, SDL_Renderer* ren) {
     SDL_RenderCopy(ren, tex, NULL, &pos);
 }
 
-void d1raw(SDL_Renderer* ren, int x, int y)
+void drawfield(SDL_Renderer* ren, int x, int y)
 {
     SDL_Surface* surface = nullptr;
     surface = SDL_LoadBMP("src\\brick.bmp");
@@ -62,14 +61,13 @@ void d1raw(SDL_Renderer* ren, int x, int y)
         return;
     }
 
-    a1pplySurface(x, y, tex, ren);
+    applySurfaceField(x, y, tex, ren);
     SDL_RenderPresent(ren);
 }
 
-
 void Field::Render(SDL_Renderer* render)
 {
-	it_Rectangle(render, 0, 0, 1080, 500);
-	d1raw(render, 10, 10);
+	rectangle(render, 0, 0, 1080, 500);
+	drawfield(render, 10, 10);
 	SDL_RenderPresent(render);
 }
