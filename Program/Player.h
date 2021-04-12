@@ -11,7 +11,7 @@ public:
 	void move_left(SDL_Renderer* ren);
 	void setX(int x);
 	void setY(int y);
-	void draw(SDL_Renderer* ren, int factor);
+	void draw(SDL_Renderer* ren, int factor, int x, int y);
 private:
 	int x = 300;
 	int y = 300;

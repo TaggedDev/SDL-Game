@@ -71,9 +71,7 @@ int main(int argc, char* args[])
 					case SDLK_a:
 							player.move_left(ren);
 						continue;
-					case SDLK_r:
-						player.draw(ren, 1);
-						continue;
+					
 					}
 					
 				}
