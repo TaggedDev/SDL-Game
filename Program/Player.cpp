@@ -10,28 +10,6 @@ void Player::setX(int value) {
 void Player::setY(int value) {
     y = value;
 }
-void dr_lineX(SDL_Renderer* ren, int x, int y, int len) {
-    for (int i = 0; i < len; i++) {
-        SDL_RenderDrawPoint(ren, x + i, y);
-    }
-}
-void full_rect_model(SDL_Renderer* ren, int x, int y, int lenx, int leny) {
-    SDL_SetRenderDrawColor(ren, 255, 255, 255,255);
-    for (int i = y; i < y + leny; i++) {
-        dr_lineX(ren, x, i, lenx);
-    }
-}
-void full_rect_bckg(SDL_Renderer* ren, int x, int y, int lenx, int leny) {
-    SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
-    for (int i = y; i < y + leny; i++) {
-        dr_lineX(ren, x, i, lenx);
-    }
-}
-void model_render(SDL_Renderer* ren, int x, int y, int sizex, int sizey) {
-    full_rect_model(ren, x, y, sizex, sizey);
-    SDL_RenderPresent(ren);
-    full_rect_bckg(ren, x, y, sizex, sizey);
-}
 
 void applySurface(int x, int y, SDL_Texture* tex, SDL_Renderer* ren) {
     SDL_Rect pos;
@@ -46,13 +24,13 @@ void Player::draw(SDL_Renderer* ren, int factor, int x, int y)
 {
     SDL_Surface* surface = nullptr;
     if (factor == 1)
-        surface = SDL_LoadBMP("rightbluetank.bmp");
+        surface = SDL_LoadBMP("src\\rightbluetank.bmp");
     else if (factor == 2)
-        surface = SDL_LoadBMP("upbluetank.bmp");
+        surface = SDL_LoadBMP("src\\upbluetank.bmp");
     else if (factor == 3)
-        surface = SDL_LoadBMP("leftbluetank.bmp");
+        surface = SDL_LoadBMP("src\\leftbluetank.bmp");
     else if (factor == 4)
-        surface = SDL_LoadBMP("downbluetank.bmp");
+        surface = SDL_LoadBMP("src\\downbluetank.bmp");
 
     if (surface == nullptr) {
         std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;

@@ -34,9 +34,42 @@ void it_Rectangle(SDL_Renderer* render, int x, int y, int length, int height) {
 	it_Line(render, x + length, y, x + length, y + height);
 }
 
+
+void a1pplySurface(int x, int y, SDL_Texture* tex, SDL_Renderer* ren) {
+    SDL_Rect pos;
+    pos.x = x;
+    pos.y = y;
+    pos.w = 60;
+    pos.h = 60;
+    SDL_RenderCopy(ren, tex, NULL, &pos);
+}
+
+void d1raw(SDL_Renderer* ren, int x, int y)
+{
+    SDL_Surface* surface = nullptr;
+    surface = SDL_LoadBMP("src\\brick.bmp");
+
+    if (surface == nullptr) {
+        std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
+        return;
+    }
+
+    SDL_Texture* tex = SDL_CreateTextureFromSurface(ren, surface);
+    SDL_FreeSurface(surface);
+
+    if (tex == nullptr) {
+        std::cout << "SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
+        return;
+    }
+
+    a1pplySurface(x, y, tex, ren);
+    SDL_RenderPresent(ren);
+}
+
+
 void Field::Render(SDL_Renderer* render)
 {
 	it_Rectangle(render, 0, 0, 1080, 500);
-
+	d1raw(render, 10, 10);
 	SDL_RenderPresent(render);
 }
