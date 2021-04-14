@@ -1,10 +1,9 @@
 #pragma once
 #include <SDL.h>
+#include <vector>
 class Player
 {
 public:
-	void move(int x1, int y1);
-	void shoot();
 	void move_right(SDL_Renderer* ren);
 	void move_down(SDL_Renderer* ren);
 	void move_up(SDL_Renderer* ren);
@@ -12,7 +11,9 @@ public:
 	void setX(int x);
 	void setY(int y);
 	void draw(SDL_Renderer* ren, int factor, int x, int y);
+	
 private:
 	int x = 300;
 	int y = 300;
+	
 };
