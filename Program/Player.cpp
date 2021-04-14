@@ -48,13 +48,13 @@ void GetSurface(SDL_Texture*& tex, SDL_Renderer* ren, SDL_Surface* surf, vector<
         }
     }
 }
-void DrawSurface(SDL_Renderer* ren, vector<vector<SDL_Color>> pixelarray) {
+void DrawSurface(SDL_Renderer* ren, vector<vector<SDL_Color>> pixelarray, int newx, int newy) {
     for (int i = 0; i < 60; i++)
     {
         for (int j = 0; j < 60; j++)
         {
             SDL_SetRenderDrawColor(ren, pixelarray[i][j].r, pixelarray[i][j].g, pixelarray[i][j].b, pixelarray[i][j].a);
-            SDL_RenderDrawPoint(ren, i, j);
+            SDL_RenderDrawPoint(ren, i+newx, j+newy);
         }
     }
 }
@@ -87,7 +87,7 @@ void Player::draw(SDL_Renderer* ren, int factor, int x, int y)
     vector<vector<SDL_Color>> pixelarray(60, vector<SDL_Color>(60));
     SDL_Texture* tex;
     GetSurface(tex, ren, surface, pixelarray);
-    DrawSurface(ren, pixelarray);
+    DrawSurface(ren, pixelarray, x, y);
     SDL_FreeSurface(surface);
     SDL_RenderPresent(ren);
 }
