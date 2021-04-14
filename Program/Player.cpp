@@ -66,6 +66,26 @@ void Player::setY(int value) {
     y = value;
 }
 
+int Player::getX()
+{
+    return x;
+}
+
+int Player::getY()
+{
+    return y;
+}
+
+void Player::Clear(SDL_Renderer* ren) {
+    for (int i = 0; i < 60; i++)
+    {
+        for (int j = 0; j < 60; j++)
+        {
+            SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
+            SDL_RenderDrawPoint(ren, x+i, y+j);
+        }
+    }
+}
 
 void Player::draw(SDL_Renderer* ren, int factor, int x, int y)
 {
@@ -83,6 +103,8 @@ void Player::draw(SDL_Renderer* ren, int factor, int x, int y)
         std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
         return;
     }
+
+    Clear(ren);
 
     vector<vector<SDL_Color>> pixelarray(60, vector<SDL_Color>(60));
     SDL_Texture* tex;

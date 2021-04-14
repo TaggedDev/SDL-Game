@@ -10,6 +10,9 @@ public:
 	void move_left(SDL_Renderer* ren);
 	void setX(int x);
 	void setY(int y);
+	int getX();
+	int getY();
+	void Clear(SDL_Renderer* ren);
 	void draw(SDL_Renderer* ren, int factor, int x, int y);
 	
 private:
