@@ -38,8 +38,8 @@ void applySurfaceField(int x, int y, SDL_Texture* tex, SDL_Renderer* ren) {
     SDL_Rect pos;
     pos.x = x;
     pos.y = y;
-    pos.w = 60;
-    pos.h = 60;
+    pos.w = 32;
+    pos.h = 32;
     SDL_RenderCopy(ren, tex, NULL, &pos);
 }
 
@@ -67,9 +67,24 @@ void drawfield(SDL_Renderer* ren, int x, int y)
 
 void Field::Render(SDL_Renderer* render)
 {
-	rectangle(render, 0, 0, 1080, 500);
-	Block blck1 = Block(1020, 440);
-	blocks.push_back(blck1);
+	rectangle(render, 0, 0, 1088, 512);
+	for (int i = 0; i < 1113; i += 32) {
+		Block blck1 = Block(i, 512);
+		blocks.push_back(blck1);
+	}
+	for (int i = 512; i > 0; i -= 32) {
+		Block blck1 = Block(1088, i);
+		blocks.push_back(blck1);
+	}
+	for (int i = 1088; i > 0; i -= 32) {
+		Block blck1 = Block(i, 0);
+		blocks.push_back(blck1);
+	}
+	for (int i = 0; i < 513; i += 32) {
+		Block blck1 = Block(0, i);
+		blocks.push_back(blck1);
+	}
+
 	
 	for (Block block : blocks) {
 		drawfield(render, block.getX(), block.getY());

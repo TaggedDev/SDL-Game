@@ -9,6 +9,6 @@ public:
 	void Render(SDL_Renderer* render);
 
 private:
-	vector<Block> blocks;
+	vector <Block> blocks;
 };
 
