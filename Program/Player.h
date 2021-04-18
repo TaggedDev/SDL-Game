@@ -12,7 +12,12 @@ public:
 	void setX(int x);
 	void setY(int y);
 	void draw(SDL_Renderer* ren, int factor, int x, int y);
+	void shooting(SDL_Renderer* ren);
 private:
 	int x = 300;
 	int y = 300;
+	bool r = 0;
+	bool l = 0;
+	bool u = 0;
+	bool d = 0;
 };

@@ -50,29 +50,27 @@ int main(int argc, char* args[])
 					quit = true;
 				}
 				// Если пользователь щёлкнул мышью
-				if (e.type == SDL_MOUSEBUTTONDOWN)
-				{
-					quit = true;
-				}
-				// Tank movement
 				if (e.type == SDL_KEYDOWN) {
-
-					switch (e.key.keysym.sym) {
-					case SDLK_d:
-						player.move_right(ren);
+					int mass[10];
+					if (e.key.keysym.sym == SDLK_d	) {
+							player.move_right(ren);
+							player.shooting(ren);
+						}
 						continue;
-					case SDLK_s:
-							player.move_down(ren);
-						continue;
-					case SDLK_w:
-							player.move_up(ren);
-						continue;
-					case SDLK_a:
-							player.move_left(ren);
-						continue;
-					
 					}
-					
+					if (e.key.keysym.sym == SDLK_a) {
+						player.move_left(ren);
+						continue;
+					}
+					if (e.key.keysym.sym == SDLK_s) {
+						player.move_down(ren);
+						continue;
+					}
+					if (e.key.keysym.sym == SDLK_w) {
+						player.move_up(ren);
+						continue;
+					}
+
 				}
 			}
 		}
