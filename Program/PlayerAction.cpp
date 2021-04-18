@@ -4,12 +4,6 @@
 
 using namespace std;
 
-void Player::setX(int value) {
-    x = value;
-}
-void Player::setY(int value) {
-    y = value;
-}
 void dr_lineX(SDL_Renderer* ren, int x, int y, int len) {
     for (int i = 0; i < len; i++) {
         SDL_RenderDrawPoint(ren, x + i, y);
@@ -33,46 +27,6 @@ void model_render(SDL_Renderer* ren, int x, int y, int sizex, int sizey) {
     full_rect_bckg(ren, x, y, sizex, sizey);
 }
 
-
-
-void applySurface(int x, int y, SDL_Texture* tex, SDL_Renderer* ren) {
-    SDL_Rect pos;
-    pos.x = x;
-    pos.y = y;
-    pos.w = 60;
-    pos.h = 60;
-    SDL_RenderCopy(ren, tex, NULL, &pos);
-}
-
-void Player::draw(SDL_Renderer* ren, int factor, int x, int y)
-{
-    SDL_Surface* surface = nullptr;
-    if (factor == 1)
-        surface = SDL_LoadBMP("src\\rightbluetank.bmp");
-    else if (factor == 2)
-        surface = SDL_LoadBMP("src\\upbluetank.bmp");
-    else if (factor == 3)
-        surface = SDL_LoadBMP("src\\leftbluetank.bmp");
-    else if (factor == 4)
-        surface = SDL_LoadBMP("src\\downbluetank.bmp");
-
-    if (surface == nullptr) {
-        std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
-        return;
-    }
-
-    SDL_Texture* tex = SDL_CreateTextureFromSurface(ren, surface);
-    SDL_FreeSurface(surface);
-
-    if (tex == nullptr) {
-        std::cout << "SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
-        return;
-    }
-
-    applySurface(x, y, tex, ren);
-    SDL_RenderPresent(ren);
-}
-
 void Player::move_right(SDL_Renderer* ren)
 {
     state = 2;
@@ -89,7 +43,6 @@ void Player::move_right(SDL_Renderer* ren)
         }
     }
 }
-
 void Player::move_down(SDL_Renderer* ren)
 {
     state = 3;

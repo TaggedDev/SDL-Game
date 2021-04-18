@@ -7,24 +7,19 @@
 void line(SDL_Renderer* ren, int x1, int y1, int x2, int y2) {
 	int dx = x2 - x1;
 	int dy = y2 - y1;
-
 	int x = x1;
 	int y = y1;
-
 	if (dx == 0) {
 		while (y < y2) {
 			SDL_RenderDrawPoint(ren, x, y);
 			y++;
 		}
-		return;
-	}
-	//cout << dx << " " << dy;
+		return; }
 	float k = dy / dx;
 	while (x <= x2) {
 		SDL_RenderDrawPoint(ren, x, y);
 		y += (int)k;
-		x++;
-	}
+		x++; }
 }
 
 void rectangle(SDL_Renderer* render, int x, int y, int length, int height) {
@@ -47,20 +42,8 @@ void drawfield(SDL_Renderer* ren, int x, int y)
 {
     SDL_Surface* surface = nullptr;
     surface = SDL_LoadBMP("src\\brick.bmp");
-
-    if (surface == nullptr) {
-        std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
-        return;
-    }
-
     SDL_Texture* tex = SDL_CreateTextureFromSurface(ren, surface);
     SDL_FreeSurface(surface);
-
-    if (tex == nullptr) {
-        std::cout << "SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
-        return;
-    }
-
     applySurfaceField(x, y, tex, ren);
     SDL_RenderPresent(ren);
 }
@@ -84,11 +67,8 @@ void Field::Render(SDL_Renderer* render)
 		Block blck1 = Block(0, i);
 		blocks.push_back(blck1);
 	}
-
-	
 	for (Block block : blocks) {
 		drawfield(render, block.getX(), block.getY());
 	}
-
 	SDL_RenderPresent(render);
 }
