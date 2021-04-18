@@ -75,10 +75,7 @@ void Player::draw(SDL_Renderer* ren, int factor, int x, int y)
 
 void Player::move_right(SDL_Renderer* ren)
 {
-    r = 1;
-    l = 0;
-    u = 0;
-    d = 0;
+    state = 2;
     int save = x;
     if (x + 70 >= 1088)
         while (x + 60 < 1088) {
@@ -95,10 +92,7 @@ void Player::move_right(SDL_Renderer* ren)
 
 void Player::move_down(SDL_Renderer* ren)
 {
-    d = 1;
-    r = 0;
-    l = 0;
-    u = 0;
+    state = 3;
     int save1 = y;
     if (y + 70 >= 512) {
         while (y + 60 < 512) {
@@ -114,10 +108,7 @@ void Player::move_down(SDL_Renderer* ren)
     }
 }
 void Player::move_left(SDL_Renderer* ren) {
-    l = 1;
-    r = 0;
-    u = 0;
-    d = 0;
+    state = 4;
     int save1 = x;
     if (x - 10 <= 32) {
         while (x > 33) {
@@ -133,10 +124,7 @@ void Player::move_left(SDL_Renderer* ren) {
     }
 }
 void Player::move_up(SDL_Renderer* ren) {
-    u = 1;
-    r = 0;
-    l = 0;
-    d = 0;
+    state = 1;
     int save1 = y;
     if (y - 10 <= 32) {
         while (y > 32) {
@@ -152,22 +140,22 @@ void Player::move_up(SDL_Renderer* ren) {
     }
 }
 void Player::shooting(SDL_Renderer* ren) {
-    if (r == 1) {
+    if (state == 2) {
         for (int i = x + 65; i < x + 400; i++) {
             model_render(ren, i, y + 25, 10, 10);
         }
     }
-    if (u == 1) {
+    if (state == 1) {
         for (int i = y - 10; i > y - 400; i--) {
             model_render(ren, x + 25, i, 10, 10);
         }
     }
-    if (l == 1) {
+    if (state == 4) {
         for (int i = x - 10; i > x - 400; i--) {
             model_render(ren, i, y + 25, 10, 10);
         }
     }
-    if (d == 1) {
+    if (state == 3) {
         for (int i = y + 65; i < y + 400; i++) {
             model_render(ren, x + 25, i, 10, 10);
         }

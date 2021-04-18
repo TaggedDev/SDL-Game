@@ -3,8 +3,6 @@
 class Player
 {
 public:
-	void move(int x1, int y1);
-	void shoot();
 	void move_right(SDL_Renderer* ren);
 	void move_down(SDL_Renderer* ren);
 	void move_up(SDL_Renderer* ren);
@@ -16,8 +14,11 @@ public:
 private:
 	int x = 300;
 	int y = 300;
-	bool r = 0;
-	bool l = 0;
-	bool u = 0;
-	bool d = 0;
+	
+	int state; 
+	// state
+	// 1 - up
+	// 2 - right
+	// 3 - down
+	// 4 - left
 };
