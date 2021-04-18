@@ -39,56 +39,30 @@ int main(int argc, char* args[])
 		Player player;
 
 		while (!done) {
-			while (SDL_PollEvent(&e))
-			{
-				// Если пользователь попытался закрыть окно
-				if (e.type == SDL_QUIT)
-				{
-					SDL_DestroyRenderer(ren);
-					SDL_DestroyWindow(win);
-					SDL_Quit();
-					quit = true;
-				}
-				// Если пользователь щёлкнул мышью
-				if (e.type == SDL_KEYDOWN) {
-					int mass[10];
-					if (e.key.keysym.sym == SDLK_d	) {
-							player.move_right(ren);
-							player.shooting(ren);
-						}
-						continue;
-					}
-					if (e.key.keysym.sym == SDLK_a) {
-						player.move_left(ren);
-						continue;
-					}
-					if (e.key.keysym.sym == SDLK_s) {
-						player.move_down(ren);
-						continue;
-					}
-					if (e.key.keysym.sym == SDLK_w) {
-						player.move_up(ren);
-						continue;
-					}
+			const Uint8* keyboard_state_array = SDL_GetKeyboardState(NULL);
 
+			SDL_PollEvent(&e);
+
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
+			{
+				if (keyboard_state_array[SDL_SCANCODE_UP])
+				{
+					player.move_up(ren);
+				}
+				if (keyboard_state_array[SDL_SCANCODE_DOWN]) {
+					player.move_down(ren);
+				}
+				if (keyboard_state_array[SDL_SCANCODE_LEFT]) {
+					player.move_left(ren);
+				}
+				if (keyboard_state_array[SDL_SCANCODE_RIGHT]) {
+					player.move_right(ren);
 				}
 			}
 		}
 	}
-	
-	//SDL_Surface* screen = SDL_SetVideoMode(550, 420, 16, SDL_HWSURFACE | SDL_DOUBLEBUF);
-	/*if (SDL_Init(SDL_INIT_EVENTS) < 0) {
-		printf("Unable to run: %s", SDL_GetError());
-		return 1;
-	}*/
-
 	SDL_Window* window;
 	SDL_Renderer* render;
 	SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &render);
-
-	
-
-	
-	
 	return 0;
 }
