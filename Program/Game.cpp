@@ -36,7 +36,7 @@ int main(int argc, char* args[])
 
 		Field field;
 		field.Render(ren);
-		Player player;
+		Player player1, player2;
 
 		while (!done) {
 			const Uint8* keyboard_state_array = SDL_GetKeyboardState(NULL);
@@ -45,18 +45,41 @@ int main(int argc, char* args[])
 
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
 			{
-				if (keyboard_state_array[SDL_SCANCODE_UP])
-				{
-					player.move_up(ren);
+				/// <summary>
+				/// First player controls
+				/// </summary>
+				if (keyboard_state_array[SDL_SCANCODE_UP]){
+					player1.move_up(ren);
 				}
 				if (keyboard_state_array[SDL_SCANCODE_DOWN]) {
-					player.move_down(ren);
+					player1.move_down(ren);
 				}
 				if (keyboard_state_array[SDL_SCANCODE_LEFT]) {
-					player.move_left(ren);
+					player1.move_left(ren);
 				}
 				if (keyboard_state_array[SDL_SCANCODE_RIGHT]) {
-					player.move_right(ren);
+					player1.move_right(ren);
+				} 
+				if (keyboard_state_array[SDL_SCANCODE_RSHIFT]) {
+					player1.shooting(ren);
+				}
+				/// <summary>
+				/// Second player controls
+				/// <summary>
+				if (keyboard_state_array[SDL_SCANCODE_W]){
+					player2.move_up(ren);
+				}
+				if (keyboard_state_array[SDL_SCANCODE_S]) {
+					player2.move_down(ren);
+				}
+				if (keyboard_state_array[SDL_SCANCODE_A]) {
+					player2.move_left(ren);
+				}
+				if (keyboard_state_array[SDL_SCANCODE_D]) {
+					player2.move_right(ren);
+				}
+				if (keyboard_state_array[SDL_SCANCODE_SPACE]) {
+					player2.shooting(ren);
 				}
 			}
 		}
