@@ -34,12 +34,12 @@ bool Bullet::isHit(Player player1, Player player2) {
     return false;
 }
 
-void Bullet::StartBullet(Player player1, Player player2, SDL_Renderer* ren, int x, int y, int sizex, int sizey) {
+void Bullet::StartBullet(Bullet bullet, Player player1, Player player2, SDL_Renderer* ren, int sizex, int sizey) {
     full_rect_model(ren, x, y, sizex, sizey);
+    SDL_RenderPresent(ren);
+    full_rect_bckg(ren, x, y, sizex, sizey);
     if (isHit(player1, player2)) {
         player1.isDead = true;
         return;
     }
-    SDL_RenderPresent(ren);
-    full_rect_bckg(ren, x, y, sizex, sizey);
 }

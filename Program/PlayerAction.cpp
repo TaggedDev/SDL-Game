@@ -72,26 +72,32 @@ void Player::move_up(SDL_Renderer* ren) {
 }
 void Player::shooting(SDL_Renderer* ren, Player player1, Player player2) {
     Bullet bullet;
-    bullet.x = player1.x;
-    bullet.y = player1.y;
     if (state == 2) {
-        for (int i = x + 65; i < x + 400; i++) {
-            bullet.StartBullet(player1, player2, ren, i, y + 25, 10, 10);
+        for (int i = 65; i < 400; i++) {
+            bullet.x = player1.x + i;
+            bullet.y = player1.y + 25;
+            bullet.StartBullet(bullet, player1, player2, ren);
         }
     }
     if (state == 1) {
-        for (int i = y - 10; i > y - 400; i--) {
-            bullet.StartBullet(player1, player2, ren, x + 25, i, 10, 10);
+        for (int i = -5; i > -335; i--) {
+            bullet.x = player1.x + 25;
+            bullet.y = player1.y + i;
+            bullet.StartBullet(bullet, player1, player2, ren);
         }
     }
     if (state == 4) {
-        for (int i = x - 10; i > x - 400; i--) {
-            bullet.StartBullet(player1, player2, ren, i, y + 25, 10, 10);
+        for (int i = -5; i > -370; i--) {
+            bullet.x = player1.x + i;
+            bullet.y = player1.y + 25;
+            bullet.StartBullet(bullet, player1, player2, ren);
         }
     }
     if (state == 3) {
-        for (int i = y + 65; i < y + 400; i++) {
-            bullet.StartBullet(player1, player2, ren, x + 25, i, 10, 10);
+        for (int i = 65; i < 400; i++) {
+            bullet.x = player1.x + 25;
+            bullet.y = player1.y + i;
+            bullet.StartBullet(bullet, player1, player2, ren);
         }
     }
 }
