@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL.h>
+#include "Player.h"
 class Player
 {
 public:
@@ -7,14 +8,12 @@ public:
 	void move_down(SDL_Renderer* ren);
 	void move_up(SDL_Renderer* ren);
 	void move_left(SDL_Renderer* ren);
-	void setX(int x);
-	void setY(int y);
 	void draw(SDL_Renderer* ren, int factor, int x, int y);
-	void shooting(SDL_Renderer* ren);
-private:
+	void shooting(SDL_Renderer* ren, Player player1, Player player2);
 	int x = 300;
 	int y = 300;
-	
+	bool isDead = false;
+private:	
 	int state; 
 	// state
 	// 1 - up

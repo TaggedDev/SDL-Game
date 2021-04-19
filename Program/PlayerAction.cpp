@@ -70,26 +70,28 @@ void Player::move_up(SDL_Renderer* ren) {
         }
     }
 }
-void Player::shooting(SDL_Renderer* ren) {
+void Player::shooting(SDL_Renderer* ren, Player player1, Player player2) {
     Bullet bullet;
+    bullet.x = player1.x;
+    bullet.y = player1.y;
     if (state == 2) {
         for (int i = x + 65; i < x + 400; i++) {
-            bullet.StartBullet(ren, i, y + 25, 10, 10);
+            bullet.StartBullet(player1, player2, ren, i, y + 25, 10, 10);
         }
     }
     if (state == 1) {
         for (int i = y - 10; i > y - 400; i--) {
-            bullet.StartBullet(ren, x + 25, i, 10, 10);
+            bullet.StartBullet(player1, player2, ren, x + 25, i, 10, 10);
         }
     }
     if (state == 4) {
         for (int i = x - 10; i > x - 400; i--) {
-            bullet.StartBullet(ren, i, y + 25, 10, 10);
+            bullet.StartBullet(player1, player2, ren, i, y + 25, 10, 10);
         }
     }
     if (state == 3) {
         for (int i = y + 65; i < y + 400; i++) {
-            bullet.StartBullet(ren, x + 25, i, 10, 10);
+            bullet.StartBullet(player1, player2, ren, x + 25, i, 10, 10);
         }
     }
 }
