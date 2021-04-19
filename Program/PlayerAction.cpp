@@ -1,31 +1,9 @@
 #include "Player.h"
 #include <iostream>
 #include <SDL.h>
+#include "Bullet.h"
 
 using namespace std;
-
-void dr_lineX(SDL_Renderer* ren, int x, int y, int len) {
-    for (int i = 0; i < len; i++) {
-        SDL_RenderDrawPoint(ren, x + i, y);
-    }
-}
-void full_rect_model(SDL_Renderer* ren, int x, int y, int lenx, int leny) {
-    SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
-    for (int i = y; i < y + leny; i++) {
-        dr_lineX(ren, x, i, lenx);
-    }
-}
-void full_rect_bckg(SDL_Renderer* ren, int x, int y, int lenx, int leny) {
-    SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
-    for (int i = y; i < y + leny; i++) {
-        dr_lineX(ren, x, i, lenx);
-    }
-}
-void model_render(SDL_Renderer* ren, int x, int y, int sizex, int sizey) {
-    full_rect_model(ren, x, y, sizex, sizey);
-    SDL_RenderPresent(ren);
-    full_rect_bckg(ren, x, y, sizex, sizey);
-}
 
 void Player::move_right(SDL_Renderer* ren)
 {
@@ -93,24 +71,25 @@ void Player::move_up(SDL_Renderer* ren) {
     }
 }
 void Player::shooting(SDL_Renderer* ren) {
+    Bullet bullet;
     if (state == 2) {
         for (int i = x + 65; i < x + 400; i++) {
-            model_render(ren, i, y + 25, 10, 10);
+            bullet.StartBullet(ren, i, y + 25, 10, 10);
         }
     }
     if (state == 1) {
         for (int i = y - 10; i > y - 400; i--) {
-            model_render(ren, x + 25, i, 10, 10);
+            bullet.StartBullet(ren, x + 25, i, 10, 10);
         }
     }
     if (state == 4) {
         for (int i = x - 10; i > x - 400; i--) {
-            model_render(ren, i, y + 25, 10, 10);
+            bullet.StartBullet(ren, i, y + 25, 10, 10);
         }
     }
     if (state == 3) {
         for (int i = y + 65; i < y + 400; i++) {
-            model_render(ren, x + 25, i, 10, 10);
+            bullet.StartBullet(ren, x + 25, i, 10, 10);
         }
     }
 }
