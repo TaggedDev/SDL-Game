@@ -1,6 +1,10 @@
 #pragma once
 #include <SDL.h>
 #include "Player.h"
+#include <string>
+#include <iostream>
+using namespace std;
+
 class Player
 {
 public:
@@ -14,7 +18,12 @@ public:
 	int y = 300;
 	int state = 1;
 	bool isDead = false;
-
+	string color;
+	Player(int inputX, int inputY, string inputColor, SDL_Renderer* render) {
+		x = inputX;
+		y = inputY;
+		color = inputColor;
+	}
 	// state
 	// 1 - up
 	// 2 - right

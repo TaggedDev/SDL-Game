@@ -33,7 +33,8 @@ int main(int argc, char* args[])
 		SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
 		Field field;
 		field.Render(ren);
-		Player player1, player2;
+		Player player1 = Player(50, 50, "Red", ren);
+		Player player2 = Player(600, 400, "Blue", ren);
 
 		while (!done) {
 			field.Update(ren, player1, player2);
