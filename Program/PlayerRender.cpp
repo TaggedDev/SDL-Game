@@ -73,5 +73,4 @@ void Player::draw(SDL_Renderer* ren, int x, int y)
         pixelarray = pixelarrayLeft;
 
     DrawSurface(ren, pixelarray, x, y);
-    SDL_RenderPresent(ren);
 }

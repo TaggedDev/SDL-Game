@@ -55,6 +55,7 @@ void Field::Update(SDL_Renderer* render, Player player1, Player player2)
 	SDL_RenderClear(render);
 	player2.draw(render, player2.x, player2.y);
 	player1.draw(render, player1.x, player1.y);	
+	SDL_RenderPresent(render);
 }
 
 void Field::Render(SDL_Renderer* render)
