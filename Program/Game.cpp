@@ -22,10 +22,10 @@ int main(int argc, char* args[])
 {
 	SDL_Event e;
 	bool done = false, quit = false;
-	Menu start;
+	//Menu start;
 	const int SCREEN_WIDTH = 1280;
 	const int SCREEN_HEIGHT = 600;
-	start.start(done);
+	//start.start(done);
 	while (!quit) {
 		SDL_Window* win;
 		SDL_Renderer* ren;
@@ -36,6 +36,7 @@ int main(int argc, char* args[])
 		Player player1, player2;
 
 		while (!done) {
+			field.Update(ren, player1, player2);
 			const Uint8* keyboard_state_array = SDL_GetKeyboardState(NULL);
 			SDL_PollEvent(&e);
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) EventHanlder(keyboard_state_array, player1, ren, player2);
@@ -55,7 +56,7 @@ void EventHanlder(const Uint8* keyboard_state_array, Player& player1, SDL_Render
 	if (keyboard_state_array[SDL_SCANCODE_DOWN]) player1.move_down(ren);
 	if (keyboard_state_array[SDL_SCANCODE_LEFT]) player1.move_left(ren);
 	if (keyboard_state_array[SDL_SCANCODE_RIGHT]) player1.move_right(ren);
-	if(keyboard_state_array[SDL_SCANCODE_RSHIFT]) player1.shooting(ren, player1, player2);
+	if (keyboard_state_array[SDL_SCANCODE_RSHIFT]) player1.shooting(ren, player1, player2);
 	/// <summary>
 	/// Second player controls
 	/// <summary>
@@ -63,5 +64,5 @@ void EventHanlder(const Uint8* keyboard_state_array, Player& player1, SDL_Render
 	if (keyboard_state_array[SDL_SCANCODE_S]) player2.move_down(ren);
 	if (keyboard_state_array[SDL_SCANCODE_A]) player2.move_left(ren);
 	if (keyboard_state_array[SDL_SCANCODE_D]) player2.move_right(ren);
-	if (keyboard_state_array[SDL_SCANCODE_RSHIFT]) player2.shooting(ren, player2, player1);
+	if (keyboard_state_array[SDL_SCANCODE_SPACE]) player2.shooting(ren, player2, player1);
 }

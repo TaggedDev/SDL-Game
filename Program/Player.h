@@ -12,9 +12,9 @@ public:
 	void shooting(SDL_Renderer* ren, Player player1, Player player2);
 	int x = 300;
 	int y = 300;
+	int state = 1;
 	bool isDead = false;
-private:	
-	int state; 
+
 	// state
 	// 1 - up
 	// 2 - right
