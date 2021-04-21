@@ -14,7 +14,7 @@ public:
 	void move_up(SDL_Renderer* ren);
 	void move_left(SDL_Renderer* ren);
 	void GetSurface(SDL_Texture*& tex, SDL_Renderer* ren, SDL_Surface* surf, vector<vector<SDL_Color>>& pixelarray);
-	void draw(SDL_Renderer* ren, int factor, int x, int y);
+	void draw(SDL_Renderer* ren, int x, int y);
 	void shooting(SDL_Renderer* ren, Player player1, Player player2);
 	int x = 300;
 	int y = 300;
@@ -22,14 +22,23 @@ public:
 	bool isDead = false;
 	string color;
 	SDL_Texture* tex;
-	vector<vector<SDL_Color>> pixelarray;
-	//SDL_Surface* sur;
+	vector<vector<SDL_Color>> pixelarrayUp;
+	vector<vector<SDL_Color>> pixelarrayRight;
+	vector<vector<SDL_Color>> pixelarrayDown;
+	vector<vector<SDL_Color>> pixelarrayLeft;
 	Player(int inputX, int inputY, string inputColor, SDL_Renderer* render) {
 		vector<vector<SDL_Color>> creater(60, vector<SDL_Color>(60));
 		x = inputX;
 		y = inputY;
 		color = inputColor;
-		pixelarray = creater;
+		pixelarrayUp = creater;
+		pixelarrayDown = creater;
+		pixelarrayLeft = creater;
+		pixelarrayRight = creater;
+		GetSurface(tex, render, SDL_LoadBMP("src\\upbluetank.bmp"), pixelarrayUp);
+		GetSurface(tex, render, SDL_LoadBMP("src\\rightbluetank.bmp"), pixelarrayRight);
+		GetSurface(tex, render, SDL_LoadBMP("src\\downbluetank.bmp"), pixelarrayDown);
+		GetSurface(tex, render, SDL_LoadBMP("src\\leftbluetank.bmp"), pixelarrayLeft);
 	}
 	// state
 	// 1 - up

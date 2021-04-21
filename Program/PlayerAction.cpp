@@ -11,12 +11,12 @@ void Player::move_right(SDL_Renderer* ren)
     int save = x;
     if (x + 70 >= 1088)
         while (x + 60 < 1088) {
-            draw(ren, 1, x, y);
+            draw(ren, x, y);
             x++;
         }
     else {
         while (x < save + 10) {
-            draw(ren, 1, x, y);
+            draw(ren, x, y);
             x++;
         }
     }
@@ -27,13 +27,13 @@ void Player::move_down(SDL_Renderer* ren)
     int save1 = y;
     if (y + 70 >= 512) {
         while (y + 60 < 512) {
-            draw(ren, 4, x, y);
+            draw(ren, x, y);
             y++;
         }
     }
     else {
         while (y < save1 + 10) {
-            draw(ren, 4, x, y); 
+            draw(ren, x, y); 
             y++;
         }
     }
@@ -43,13 +43,13 @@ void Player::move_left(SDL_Renderer* ren) {
     int save1 = x;
     if (x - 10 <= 32) {
         while (x > 33) {
-            draw(ren, 3, x, y);
+            draw(ren, x, y);
             x--;
         }
     }
     else {
         while (x > save1 - 10) {
-            draw(ren, 3, x, y);
+            draw(ren, x, y);
             x--;
         }
     }
@@ -59,13 +59,13 @@ void Player::move_up(SDL_Renderer* ren) {
     int save1 = y;
     if (y - 10 <= 32) {
         while (y > 32) {
-            draw(ren, 2, x, y);
+            draw(ren, x, y);
             y--;
         }
     }
     else{
         while (y > save1 - 10) {
-            draw(ren, 2, x, y);
+            draw(ren, x, y);
             y--;
         }
     }

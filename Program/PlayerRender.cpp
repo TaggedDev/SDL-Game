@@ -60,29 +60,18 @@ void DrawSurface(SDL_Renderer* ren, vector<vector<SDL_Color>> pixelarray, int ne
     }
 }
 
-void applySurface(int x, int y, SDL_Texture* tex, SDL_Renderer* ren) {
-    SDL_Rect pos;
-    pos.x = x;
-    pos.y = y;
-    pos.w = 60;
-    pos.h = 60;
-    SDL_RenderCopy(ren, tex, NULL, &pos);
-}
-
-void Player::draw(SDL_Renderer* ren, int factor, int x, int y)
+void Player::draw(SDL_Renderer* ren, int x, int y)
 {
-    SDL_Surface* surface = nullptr;
-    if (factor == 1)
-        surface = SDL_LoadBMP("src\\rightbluetank.bmp");
-    else if (factor == 2)
-        surface = SDL_LoadBMP("src\\upbluetank.bmp");
-    else if (factor == 3)
-        surface = SDL_LoadBMP("src\\leftbluetank.bmp");
-    else if (factor == 4)
-        surface = SDL_LoadBMP("src\\downbluetank.bmp");
+    vector<vector<SDL_Color>> pixelarray;
+    if (state == 1)
+        pixelarray = pixelarrayUp;
+    else if (state == 2)
+        pixelarray = pixelarrayRight;
+    else if (state == 3)
+        pixelarray = pixelarrayDown;
+    else if (state == 4)
+        pixelarray = pixelarrayLeft;
 
-    GetSurface(tex, ren, surface, pixelarray);
     DrawSurface(ren, pixelarray, x, y);
-    SDL_FreeSurface(surface);
     SDL_RenderPresent(ren);
 }
