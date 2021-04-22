@@ -35,6 +35,9 @@ bool Bullet::isHit(Player player1, Player player2) {
 }
 
 void Bullet::StartBullet(Bullet bullet, Player player1, Player player2, SDL_Renderer* ren, int sizex, int sizey) {
+    if (x == 1087 || x == 1 || y == 1 || y == 511) {
+        return;
+    }
     full_rect_model(ren, x, y, sizex, sizey);
     SDL_RenderPresent(ren);
     full_rect_bckg(ren, x, y, sizex, sizey);

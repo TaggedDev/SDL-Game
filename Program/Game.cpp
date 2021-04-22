@@ -22,10 +22,10 @@ int main(int argc, char* args[])
 {
 	SDL_Event e;
 	bool done = false, quit = false;
-	//Menu start;
+	Menu start;
 	const int SCREEN_WIDTH = 1280;
 	const int SCREEN_HEIGHT = 600;
-	//start.start(done);
+	start.start(done);
 	while (!quit) {
 		SDL_Window* win;
 		SDL_Renderer* ren;
