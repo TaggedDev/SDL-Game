@@ -35,10 +35,20 @@ public:
 		pixelarrayDown = creater;
 		pixelarrayLeft = creater;
 		pixelarrayRight = creater;
-		GetSurface(tex, render, SDL_LoadBMP("src\\upbluetank.bmp"), pixelarrayUp);
-		GetSurface(tex, render, SDL_LoadBMP("src\\rightbluetank.bmp"), pixelarrayRight);
-		GetSurface(tex, render, SDL_LoadBMP("src\\downbluetank.bmp"), pixelarrayDown);
-		GetSurface(tex, render, SDL_LoadBMP("src\\leftbluetank.bmp"), pixelarrayLeft);
+		if (inputColor == "Blue") {
+			GetSurface(tex, render, SDL_LoadBMP("src\\upbluetank.bmp"), pixelarrayUp);
+			GetSurface(tex, render, SDL_LoadBMP("src\\rightbluetank.bmp"), pixelarrayRight);
+			GetSurface(tex, render, SDL_LoadBMP("src\\downbluetank.bmp"), pixelarrayDown);
+			GetSurface(tex, render, SDL_LoadBMP("src\\leftbluetank.bmp"), pixelarrayLeft);
+		}
+		else {
+			GetSurface(tex, render, SDL_LoadBMP("src\\upredtank.bmp"), pixelarrayUp);
+			GetSurface(tex, render, SDL_LoadBMP("src\\rightredtank.bmp"), pixelarrayRight);
+			GetSurface(tex, render, SDL_LoadBMP("src\\downredtank.bmp"), pixelarrayDown);
+			GetSurface(tex, render, SDL_LoadBMP("src\\leftredtank.bmp"), pixelarrayLeft);
+		}
+
+		
 	}
 	// state
 	// 1 - up
