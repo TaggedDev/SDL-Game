@@ -1,4 +1,4 @@
-//Using SDL and standard IO
+﻿//Using SDL and standard IO
 #include <SDL.h>
 #include <stdio.h>
 #include <string>
@@ -25,6 +25,7 @@ int main(int argc, char* args[])
 	Menu start;
 	const int SCREEN_WIDTH = 1280;
 	const int SCREEN_HEIGHT = 600;
+	int point = 0;
 	start.start(done);
 	while (!quit) {
 		SDL_Window* win;

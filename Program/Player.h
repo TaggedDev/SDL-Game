@@ -18,7 +18,7 @@ public:
 	void shooting(SDL_Renderer* ren, Player player1, Player player2);
 	int x = 300;
 	int y = 300;
-	int state = 1;
+	int state = 3;
 	bool isDead = false;
 	string color;
 	SDL_Texture* tex;
