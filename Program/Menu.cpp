@@ -1,4 +1,5 @@
 ﻿#include "Menu.h"
+#include <SDL_mixer.h>
 #include "Player.h"
 #include <iostream>
 #include <SDL.h>

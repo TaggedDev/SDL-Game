@@ -40,6 +40,7 @@ void Bullet::StartBullet(Bullet bullet, Player& player1, Player& player2, SDL_Re
     if (x == 1087 || x == 1 || y == 1 || y == 511)
         return;
     if (isHit(player1, player2)) {
+        player1.playEnd();
         player1.isDead = true;
         return;
     }

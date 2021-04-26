@@ -50,6 +50,7 @@ public:
 
 		
 	}
+	void playEnd();
 	// state
 	// 1 - up
 	// 2 - right

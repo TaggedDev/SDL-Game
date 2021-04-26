@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Field.h"
 #include "Player.h"
+#include <SDL_mixer.h>
 #include "Game.h"
 #include "Menu.h"
 
@@ -16,6 +17,23 @@ void MenuHandler(const Uint8* keyboard_state_array1, Menu& start, bool& done)
 		start.start(done);
 	}
 
+}
+
+void playStart() {
+
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	{
+		printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+		return;
+	}
+
+	Mix_Chunk* gMusic = NULL;
+	gMusic = Mix_LoadWAV("src\\start.wav");
+	if (gMusic == NULL) {
+		printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
+		return;
+	}
+	Mix_PlayChannel(-1, gMusic, 0);
 }
 
 int main(int argc, char* args[])
@@ -32,6 +50,7 @@ int main(int argc, char* args[])
 		SDL_Renderer* ren;
 		SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &win, &ren);
 		SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
+		playStart();
 		Field field;
 		field.Render(ren);
 		Player player1 = Player(50, 50, "Red", ren);
@@ -39,14 +58,10 @@ int main(int argc, char* args[])
 
 		while (!done) {
 			if (!(player1.isDead || player2.isDead)) {
-				cout << player1.isDead << " " << player2.isDead << endl;
 				field.Update(ren, player1, player2);
 				const Uint8* keyboard_state_array = SDL_GetKeyboardState(NULL);
 				SDL_PollEvent(&e);
 				if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) EventHanlder(keyboard_state_array, player1, ren, player2);
-			}
-			else {
-				
 			}
 		}
 	}
