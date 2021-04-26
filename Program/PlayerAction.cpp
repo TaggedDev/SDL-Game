@@ -5,8 +5,11 @@
 
 using namespace std;
 
-void Player::move_right(SDL_Renderer* ren)
-{
+void Player::move_right(SDL_Renderer* ren, Player& player1, Player& player2) {
+
+    if (player1.isDead || player2.isDead)
+        return;
+
     state = 2;
     int save = x;
     if (x + 70 >= 1088)
@@ -21,8 +24,10 @@ void Player::move_right(SDL_Renderer* ren)
         }
     }
 }
-void Player::move_down(SDL_Renderer* ren)
-{
+void Player::move_down(SDL_Renderer* ren, Player& player1, Player& player2) {
+
+    if (player1.isDead || player2.isDead)
+        return;
     state = 3;
     int save1 = y;
     if (y + 70 >= 512) {
@@ -38,7 +43,11 @@ void Player::move_down(SDL_Renderer* ren)
         }
     }
 }
-void Player::move_left(SDL_Renderer* ren) {
+void Player::move_left(SDL_Renderer* ren, Player& player1, Player& player2) {
+
+    if (player1.isDead || player2.isDead)
+        return;
+
     state = 4;
     int save1 = x;
     if (x - 10 <= 32) {
@@ -54,7 +63,11 @@ void Player::move_left(SDL_Renderer* ren) {
         }
     }
 }
-void Player::move_up(SDL_Renderer* ren) {
+void Player::move_up(SDL_Renderer* ren, Player& player1, Player& player2) {
+
+    if (player1.isDead || player2.isDead)
+        return;
+
     state = 1;
     int save1 = y;
     if (y - 10 <= 32) {
@@ -70,8 +83,12 @@ void Player::move_up(SDL_Renderer* ren) {
         }
     }
 }
-void Player::shooting(SDL_Renderer* ren, Player player1, Player player2) {
+void Player::shooting(SDL_Renderer* ren, Player& player1, Player& player2) {
     Bullet bullet;
+
+    if (player1.isDead || player2.isDead)
+        return;
+
     if (state == 2) {
         for (int i = 65; i < 400; i++) {
             bullet.x = player1.x + i;

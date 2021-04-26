@@ -9,13 +9,13 @@ using namespace std;
 class Player
 {
 public:
-	void move_right(SDL_Renderer* ren);
-	void move_down(SDL_Renderer* ren);
-	void move_up(SDL_Renderer* ren);
-	void move_left(SDL_Renderer* ren);
+	void move_right(SDL_Renderer* ren, Player& player1, Player& player2);
+	void move_down(SDL_Renderer* ren, Player& player1, Player& player2);
+	void move_up(SDL_Renderer* ren, Player& player1, Player& player2);
+	void move_left(SDL_Renderer* ren, Player& player1, Player& player2);
 	void GetSurface(SDL_Texture*& tex, SDL_Renderer* ren, SDL_Surface* surf, vector<vector<SDL_Color>>& pixelarray);
 	void draw(SDL_Renderer* ren, int x, int y);
-	void shooting(SDL_Renderer* ren, Player player1, Player player2);
+	void shooting(SDL_Renderer* ren, Player& player1, Player& player2);
 	int x = 300;
 	int y = 300;
 	int state = 3;

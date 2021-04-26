@@ -34,7 +34,7 @@ bool Bullet::isHit(Player player1, Player player2) {
     return false;
 }
 
-void Bullet::StartBullet(Bullet bullet, Player player1, Player player2, SDL_Renderer* ren, int sizex, int sizey) {
+void Bullet::StartBullet(Bullet bullet, Player& player1, Player& player2, SDL_Renderer* ren, int sizex, int sizey) {
     if (x == 1087 || x == 1 || y == 1 || y == 511) {
         return;
     }
