@@ -11,14 +11,14 @@
 
 using namespace std;
 //Screen dimension constants
-void MenuHandler(const Uint8* keyboard_state_array1, Menu& start, bool& done)
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 600;
+
+void MenuHandler(Menu menu, const Uint8* keyboard_state_array1, Menu& start, bool& done)
 {
-	if (keyboard_state_array1[SDL_SCANCODE_SPACE]) {
-		start.start(done);
-	}
-
+	if (keyboard_state_array1[SDL_SCANCODE_SPACE]) 
+		start.start(menu, done);
 }
-
 void playStart() {
 
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
@@ -35,36 +35,25 @@ void playStart() {
 	}
 	Mix_PlayChannel(-1, gMusic, 0);
 }
-
 int main(int argc, char* args[])
 {
-	SDL_Event e;
+	SDL_Event e; Menu start;
 	bool done = false, quit = false;
-	Menu start;
-	const int SCREEN_WIDTH = 1280;
-	const int SCREEN_HEIGHT = 600;
-	int point = 0;
-	start.start(done);
+	start.start(start, done);
 	while (!quit) {
-		SDL_Window* win;
-		SDL_Renderer* ren;
+		SDL_Window* win; SDL_Renderer* ren;
 		SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &win, &ren);
 		SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
 		playStart();
-		Field field;
-		field.Render(ren);
+		Field field; field.Render(ren);
 		Player player1 = Player(50, 50, "Red", ren);
 		Player player2 = Player(600, 400, "Blue", ren);
-
 		while (!done) {
 			if (!(player1.isDead || player2.isDead)) {
-				field.Update(ren, player1, player2);
 				const Uint8* keyboard_state_array = SDL_GetKeyboardState(NULL);
+				field.Update(ren, player1, player2);
 				SDL_PollEvent(&e);
-				if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) EventHanlder(keyboard_state_array, player1, ren, player2);
-			}
-		}
-	}
+				if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) EventHanlder(keyboard_state_array, player1, ren, player2);}	}	}
 	SDL_Window* window;
 	SDL_Renderer* render;
 	SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &render);

@@ -49,14 +49,6 @@ void drawfield(SDL_Renderer* ren, int x, int y)
     SDL_RenderPresent(ren);
 }
 
-void Field::Update(SDL_Renderer* render, Player player1, Player player2)
-{
-	SDL_SetRenderDrawColor(render, 0, 0, 0, 255);
-	player2.draw(render, player2.x, player2.y);
-	player1.draw(render, player1.x, player1.y);	
-	SDL_RenderPresent(render);
-}
-
 void Field::Render(SDL_Renderer* render)
 {
 	rectangle(render, 0, 0, 1088, 512);

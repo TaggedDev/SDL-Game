@@ -85,46 +85,25 @@ void Player::move_up(SDL_Renderer* ren, Player& player1, Player& player2) {
 }
 void Player::shooting(SDL_Renderer* ren, Player& player1, Player& player2) {
     Bullet bullet;
-
-    if (player1.isDead || player2.isDead)
-        return;
-
+    if (player1.isDead || player2.isDead) return;
     if (state == 2) {
         for (int i = 65; i < 400; i++) {
-            bullet.x = player1.x + i;
-            bullet.y = player1.y + 25;
-            if (x + i >= 1077) {
-                return;
-            }
-            bullet.StartBullet(bullet, player1, player2, ren);
-        }
-    }
+            bullet.x = player1.x + i; bullet.y = player1.y + 25;
+            if (x + i >= 1077) return;
+            bullet.StartBullet(bullet, player1, player2, ren); } }
     if (state == 1) {
         for (int i = -5; i > -335; i--) {
-            bullet.x = player1.x + 25;
-            bullet.y = player1.y + i;
-            if (y + i <= 31) {
-                return;
-            }
-            bullet.StartBullet(bullet, player1, player2, ren);
-        }
-    }
+            bullet.x = player1.x + 25; bullet.y = player1.y + i;
+            if (y + i <= 31) return;
+            bullet.StartBullet(bullet, player1, player2, ren); } }
     if (state == 4) {
         for (int i = -5; i > -370; i--) {
-            bullet.x = player1.x + i;
-            bullet.y = player1.y + 25;
-            if (x + i <= 31)
-                return;
-            bullet.StartBullet(bullet, player1, player2, ren);
-        }
-    }
+            bullet.x = player1.x + i; bullet.y = player1.y + 25;
+            if (x + i <= 31) return;
+            bullet.StartBullet(bullet, player1, player2, ren); } }
     if (state == 3) {
         for (int i = 65; i < 400; i++) {
-            bullet.x = player1.x + 25;
-            bullet.y = player1.y + i;
-            if (y + i > 502)
-                return;
-            bullet.StartBullet(bullet, player1, player2, ren);
-        }
-    }
+            bullet.x = player1.x + 25; bullet.y = player1.y + i;
+            if (y + i > 502) return;
+            bullet.StartBullet(bullet, player1, player2, ren); } }
 }

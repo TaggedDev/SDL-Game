@@ -15,7 +15,7 @@ void dr_lineYY(SDL_Renderer* ren, int x, int y, int len) {
 		SDL_RenderDrawPoint(ren, x, y + i);
 	}
 }
-void full_rect_modell(SDL_Renderer* ren, int x, int y, int lenx, int leny, int a) {
+void Menu::full_rect_modell(SDL_Renderer* ren, int x, int y, int lenx, int leny, int a) {
 	if (a == 3) SDL_SetRenderDrawColor(ren, 192, 192, 192, 200);
 	if (a == 2) SDL_SetRenderDrawColor(ren, 0, 200, 0, 200);
 	if (a == 1) SDL_SetRenderDrawColor(ren, 128, 0, 0, 100);
@@ -24,78 +24,19 @@ void full_rect_modell(SDL_Renderer* ren, int x, int y, int lenx, int leny, int a
 		dr_lineXX(ren, x, i, lenx);
 	}
 }
-void P(SDL_Renderer* ren, int x, int y) {
-	int a = 1;
-	for (int i = y; i < y + 60 ; i++) {
-		full_rect_modell(ren, x, i, 6, 6, 0);
-	}
-	for (int i = x; i < x + 30; i++) {
-		full_rect_modell(ren, i, y, 4, 4, 0);
-	}
-	for (int i = x + 30; i > x ; i--) {
-		full_rect_modell(ren, i, y + 30, 4, 4, 0);
-	}
-	for (int i = y; i < y + 30; i++) {
-		full_rect_modell(ren, x + 30, i, 4, 4, 0);
-	}
-}
-void L(SDL_Renderer* ren, int x, int y) {
-	for (int i = y; i < y + 60; i++)
-		full_rect_modell(ren, x, i, 6, 6, 0);
-	for (int i = x; i < x + 30; i++)
-		full_rect_modell(ren, i, y + 62, 4, 4, 0);
-}
-void A(SDL_Renderer* ren, int x, int y) {
-	for (int i = y; i < y + 60; i += 2) {
-		full_rect_modell(ren, x, i, 5, 5, 0);
-		x--;
-	}
-	x += 30;
-	for (int i = y; i < y + 60; i += 2) {
-		full_rect_modell(ren, x, i, 5, 5, 0);
-		x++;
-	}
-	x -= 15;
-	for (int i = x; i > x - 30; i--) {
-		full_rect_modell(ren, i, y + 30, 5, 5, 0);
-	}
-	
-}
-void Y(SDL_Renderer* ren, int x, int y) {
-	for (int i = y; i < y + 26; i += 2) {
-		full_rect_modell(ren, x, i, 5, 5, 0);
-		x-=2;
-	}
-	for (int i = y;  i < y + 26; i += 2) {
-		full_rect_modell(ren, x - 26, i, 5, 5, 0);
-		x+=2;
-	}
-	x -= 26;
-	for (int i = y + 26; i < y + 60; i++) {
-		full_rect_modell(ren, x, i, 5, 5, 0);
-	}
-}
-void question(SDL_Renderer* ren, int x, int y) {
-	full_rect_modell(ren, x, y, 9, 14, 0);
-	full_rect_modell(ren, x + 4, y - 4, 23, 4, 0);
-	full_rect_modell(ren, x + 23, y, 9, 19, 0);
-	full_rect_modell(ren, x + 18, y + 14, 5, 5, 0);
-	full_rect_modell(ren, x + 14, y + 19, 9, 9, 0);
-	full_rect_modell(ren, x + 14, y + 34, 9, 9, 0);
-}
-int draw(SDL_Window* win, SDL_Renderer* ren) {
+int draw(Menu menu, SDL_Window* win, SDL_Renderer* ren) {
 	//Highlite
-	full_rect_modell(ren, 390, 190, 260, 90, 3);
-	full_rect_modell(ren, 390, 190, 60, 90, 1);
-	full_rect_modell(ren, 500, 280, 50, 50, 2);
+	menu.full_rect_modell(ren, 390, 190, 260, 90, 3);
+	menu.full_rect_modell(ren, 390, 190, 60, 90, 1);
+	menu.full_rect_modell(ren, 500, 280, 50, 50, 2);
 	//PLAY
-	P(ren, 400, 200);
-	L(ren, 460, 200);
-	A(ren, 550, 200);
-	Y(ren, 640, 200);
+	menu.P(ren, 400, 200);
+	menu.L(ren, 460, 200);
+	menu.A(ren, 550, 200);
+	menu.Y(ren, 640, 200);
 	//PLAY
 	//RULES
-	question(ren, 508, 285);
+	menu.question(ren, 508, 285);
 	//RULES
 	Player player1 = Player(50, 50, "Red", ren);
 	//player1.draw(ren, 100, 100);
@@ -131,12 +72,12 @@ int retra(bool done, SDL_Renderer* ren, SDL_Window* win) {
 	}
 	return done;
 }
-int Menu::start(bool done) {
+int Menu::start(Menu menu, bool done) {
 	SDL_Window* win;
 	SDL_Renderer* ren;
 	SDL_CreateWindowAndRenderer(1088, 512, 0, &win, &ren);
 	SDL_SetRenderDrawColor(ren, 255, 0, 0, 0);
-	draw(win, ren);
+	draw(menu, win, ren);
 	SDL_RenderPresent(ren);
 	retra(done,ren, win);
 	return done;
