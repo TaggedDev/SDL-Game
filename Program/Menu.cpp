@@ -4,6 +4,7 @@
 #include <iostream>
 #include <SDL.h>
 using namespace std;
+bool isRules = false;
 void dr_lineXX(SDL_Renderer* ren, int x, int y, int len) {
 	for (int i = 0; i < len; i++) {
 		SDL_RenderDrawPoint(ren, x + i, y);
@@ -55,9 +56,6 @@ int retra(bool done, SDL_Renderer* ren, SDL_Window* win) {
 				SDL_Quit();
 				done = 1;
 			}
-			if (e.key.keysym.sym == SDLK_q) {
-				cout << "Rules place is here";
-			}
 			if (e.key.keysym.sym == SDLK_p) {
 				SDL_DestroyRenderer(ren);
 				SDL_DestroyWindow(win);
@@ -65,8 +63,9 @@ int retra(bool done, SDL_Renderer* ren, SDL_Window* win) {
 			}
 		}
 		if (e.type == SDL_MOUSEBUTTONDOWN) {
-			if (e.button.x > 500 && e.button.x < 550 && e.button.y > 280 && e.button.y < 330) {
-				cout << "Rules place is here/////////////////////////////";
+			if (e.button.x > 500 && e.button.x < 550 && e.button.y > 280 && e.button.y < 330 && !isRules) {
+				cout << "Vasha zadacha - unichtozhit tank protivnika. Upravlenie:\nSiniy tank: WASD + Space\nKrasny tank: STRELKI + RShift";
+				isRules = true;
 			}
 		}
 	}
