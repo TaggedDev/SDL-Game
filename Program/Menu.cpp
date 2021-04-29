@@ -5,44 +5,17 @@
 #include <SDL.h>
 using namespace std;
 bool isRules = false;
-void dr_lineXX(SDL_Renderer* ren, int x, int y, int len) {
-	for (int i = 0; i < len; i++) {
-		SDL_RenderDrawPoint(ren, x + i, y);
-	}
-}
-void dr_lineYY(SDL_Renderer* ren, int x, int y, int len) {
-	SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
-	for (int i = 0; i < len; i++) {
-		SDL_RenderDrawPoint(ren, x, y + i);
-	}
-}
-void Menu::full_rect_modell(SDL_Renderer* ren, int x, int y, int lenx, int leny, int a) {
-	if (a == 3) SDL_SetRenderDrawColor(ren, 192, 192, 192, 200);
-	if (a == 2) SDL_SetRenderDrawColor(ren, 0, 200, 0, 200);
-	if (a == 1) SDL_SetRenderDrawColor(ren, 128, 0, 0, 100);
-	if (a == 0) SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
-	for (int i = y; i < y + leny; i++) {
-		dr_lineXX(ren, x, i, lenx);
-	}
-}
+
 int draw(Menu menu, SDL_Window* win, SDL_Renderer* ren) {
-	//Highlite
 	menu.full_rect_modell(ren, 390, 190, 260, 90, 3);
 	menu.full_rect_modell(ren, 390, 190, 60, 90, 1);
 	menu.full_rect_modell(ren, 500, 280, 50, 50, 2);
-	//PLAY
 	menu.P(ren, 400, 200);
 	menu.L(ren, 460, 200);
 	menu.A(ren, 550, 200);
 	menu.Y(ren, 640, 200);
-	//PLAY
-	//RULES
 	menu.question(ren, 508, 285);
-	//RULES
 	Player player1 = Player(50, 50, "Red", ren);
-	//player1.draw(ren, 100, 100);
-
-	//P Ende
 	return 0;
 }
 int retra(bool done, SDL_Renderer* ren, SDL_Window* win) {
@@ -64,7 +37,7 @@ int retra(bool done, SDL_Renderer* ren, SDL_Window* win) {
 		}
 		if (e.type == SDL_MOUSEBUTTONDOWN) {
 			if (e.button.x > 500 && e.button.x < 550 && e.button.y > 280 && e.button.y < 330 && !isRules) {
-				cout << "Vasha zadacha - unichtozhit tank protivnika. Upravlenie:\nSiniy tank: WASD + Space\nKrasny tank: STRELKI + RShift";
+				cout << "Vasha zadacha - popast v tank protivnika odyn raz. Upravlenie:\nSiniy tank: WASD + Space\nKrasny tank: STRELKI + RShift";
 				isRules = true;
 			}
 		}

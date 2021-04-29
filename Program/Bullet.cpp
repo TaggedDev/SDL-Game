@@ -42,6 +42,10 @@ void Bullet::StartBullet(Bullet bullet, Player& player1, Player& player2, SDL_Re
     if (isHit(player1, player2)) {
         player1.playEnd();
         player1.isDead = true;
+        if (player1.color == "Blue")
+            cout << "Siniy igrok vigral" << endl;
+        else
+            cout << "Krasny igrok vigral" << endl;
         return;
     }
     full_rect_model(ren, x, y, sizex, sizey);
